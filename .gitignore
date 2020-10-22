@@ -28,3 +28,5 @@ nbproject
 _notes
 .vscode
 dwsync.xml
+package-lock.json
+dist/
