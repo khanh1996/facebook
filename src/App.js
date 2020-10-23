@@ -11,14 +11,14 @@ function App(props) {
         <BrowserRouter>
             <Header />
             <Switch>
+                <Route path="/terms">
+                    <Terms/>
+                </Route>
                 <Route path="/about-us">
-                    <About />
+                    <About/>
                 </Route>
                 <Route path="/">
-                    <HomeGuest />
-                </Route>
-                <Route path="/terms">
-                    <Terms />
+                    <HomeGuest/>
                 </Route>
             </Switch>
             <Footer />

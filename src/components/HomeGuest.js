@@ -1,8 +1,16 @@
 import React from "react";
+import Container from "./Container";
 
 function HomeGuest(props) {
+
+    const _onSubmit = (event) => {
+        event.preventDefault();
+        console.log(event);
+    }
+
+
     return (
-        <div className="container py-md-5">
+        <Container>
             <div className="row align-items-center">
                 <div className="col-lg-7 py-3 py-md-5">
                     <h1 className="display-3">Remember Writing?</h1>
@@ -15,7 +23,7 @@ function HomeGuest(props) {
                     </p>
                 </div>
                 <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
-                    <form>
+                    <form onSubmit={_onSubmit}>
                         <div className="form-group">
                             <label
                                 htmlFor="username-register"
@@ -72,7 +80,7 @@ function HomeGuest(props) {
                     </form>
                 </div>
             </div>
-        </div>
+        </Container>
     );
 }
 
