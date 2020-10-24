@@ -1,9 +1,9 @@
-import React from "react";
-import Container from "../Container";
+import React from 'react';
+import Page from '../Page';
 
 function Terms() {
     return (
-        <Container wide={true}>
+        <Page title={'Terms'}>
             <h2>Our Terms &amp; Conditions</h2>
             <p className="lead text-muted">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -33,7 +33,7 @@ function Terms() {
                 aspernatur aliquam nisi sed harum laborum, nemo odio animi
                 officia quisquam. Veniam, natus reprehenderit.
             </p>
-        </Container>
+        </Page>
     );
 }
 

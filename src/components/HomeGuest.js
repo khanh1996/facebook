@@ -1,16 +1,64 @@
-import React from "react";
-import Container from "./Container";
+import React, {useEffect, useState} from 'react';
+import Page from './Page';
 
 function HomeGuest(props) {
+    const [userName, setUserName] = useState();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
-    const _onSubmit = (event) => {
+    const _handlerValidate = () => {
+        // userName: không được rỗng. độ dài của username phải hơn 6 ký tự khanhvb
+        // email đúng dạng
+        // có chữ cái viết hoa,viết thường, có số và ký tự đặc biêt
+        // success => thành công
+        // fail =>  báo message
+        let validateUserName = false;
+        let validateEmail = false;
+        let validatePassword = false;
+        if (userName || email || password) {
+            console.log('có tồn tại name, email, password');
+        } else {
+        }
+        // if (userName) {
+        //     if (userName.length > 6) {
+        //         console.log('co userName');
+        //         validateUserName = true;
+        //     }
+        //     alert('userName có độ dài hơn 6 ký tự');
+        // } else {
+        //     alert('userName không được để rỗng');
+        // }
+
+        // if (email) {
+        //     console.log('cos email');
+        // }
+    };
+
+    const _onHandlerChange = (event) => {
+        const target = event.target;
+        const currentName = target.name;
+        switch (currentName) {
+            case 'username':
+                setUserName(event.target.value);
+                break;
+            case 'email':
+                setEmail(event.target.value);
+                break;
+            case 'password':
+                setPassword(event.target.value);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const _onHandlerSubmit = (event) => {
         event.preventDefault();
-        console.log(event);
-    }
-
+        _handlerValidate();
+    };
 
     return (
-        <Container>
+        <Page title="Home Guest">
             <div className="row align-items-center">
                 <div className="col-lg-7 py-3 py-md-5">
                     <h1 className="display-3">Remember Writing?</h1>
@@ -23,7 +71,7 @@ function HomeGuest(props) {
                     </p>
                 </div>
                 <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
-                    <form onSubmit={_onSubmit}>
+                    <form onSubmit={_onHandlerSubmit}>
                         <div className="form-group">
                             <label
                                 htmlFor="username-register"
@@ -38,6 +86,8 @@ function HomeGuest(props) {
                                 type="text"
                                 placeholder="Pick a username"
                                 autoComplete="off"
+                                onChange={_onHandlerChange}
+                                value={userName}
                             />
                         </div>
                         <div className="form-group">
@@ -54,6 +104,8 @@ function HomeGuest(props) {
                                 type="text"
                                 placeholder="you@example.com"
                                 autoComplete="off"
+                                onChange={_onHandlerChange}
+                                value={email}
                             />
                         </div>
                         <div className="form-group">
@@ -69,6 +121,8 @@ function HomeGuest(props) {
                                 className="form-control"
                                 type="password"
                                 placeholder="Create a password"
+                                onChange={_onHandlerChange}
+                                value={password}
                             />
                         </div>
                         <button
@@ -80,7 +134,7 @@ function HomeGuest(props) {
                     </form>
                 </div>
             </div>
-        </Container>
+        </Page>
     );
 }
 

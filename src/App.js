@@ -12,13 +12,13 @@ function App(props) {
             <Header />
             <Switch>
                 <Route path="/terms">
-                    <Terms/>
+                    <Terms />
                 </Route>
                 <Route path="/about-us">
-                    <About/>
+                    <About />
                 </Route>
                 <Route path="/">
-                    <HomeGuest/>
+                    <HomeGuest />
                 </Route>
             </Switch>
             <Footer />
