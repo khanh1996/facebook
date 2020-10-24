@@ -3,6 +3,7 @@ import Page from './Page';
 
 function HomeGuest(props) {
     const [userName, setUserName] = useState();
+    consst;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -12,9 +13,7 @@ function HomeGuest(props) {
         // có chữ cái viết hoa,viết thường, có số và ký tự đặc biêt
         // success => thành công
         // fail =>  báo message
-        let validateUserName = false;
-        let validateEmail = false;
-        let validatePassword = false;
+
         if (userName || email || password) {
             console.log('có tồn tại name, email, password');
         } else {
