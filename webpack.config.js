@@ -12,9 +12,9 @@ module.exports = {
         filename: "./index.js",
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        port: 8080,
-        historyApiFallback: { index: "index.html" }
+        contentBase: path.join(__dirname, "dist"),
+        port: 4343,
+        historyApiFallback: { index: "index.html" },
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -26,14 +26,16 @@ module.exports = {
         }),
     ],
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
             },
             {
                 test: /\.(sa|sc)ss$/,
-                use: [{
+                use: [
+                    {
                         loader: MiniCssExtractPlugin.loader,
                     },
                     {
@@ -61,12 +63,14 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|gif|svg)$/i,
-                use: [{
-                    loader: "file-loader",
-                    options: {
-                        name: "[path][name].[ext]",
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[path][name].[ext]",
+                        },
                     },
-                }, ],
+                ],
             },
         ],
     },

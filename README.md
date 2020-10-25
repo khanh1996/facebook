@@ -1,5 +1,6 @@
 Facebook App
 rfce => function component
 
-username: admin
-password: xVh8q8oPemLDrbeX
+username: mainUser
+password: idJ3iBSW2VtP7Kvg
+dbname: FacebookApp

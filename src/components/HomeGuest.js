@@ -1,49 +1,53 @@
-import React, {useEffect, useState} from 'react';
-import Page from './Page';
+import React, { useEffect, useState } from "react";
+import Page from "./Page";
+import Axios from "axios";
 
 function HomeGuest(props) {
-    const [userName, setUserName] = useState();
-    consst;
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorUserName, setErrorUserName] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorPassword, setErrorPassword] = useState(false);
+    const [formValid, setFormValid] = useState(false);
 
     const _handlerValidate = () => {
         // userName: không được rỗng. độ dài của username phải hơn 6 ký tự khanhvb
         // email đúng dạng
-        // có chữ cái viết hoa,viết thường, có số và ký tự đặc biêt
+        // password có chữ cái viết hoa,viết thường, có số và ký tự đặc biêt, có độ dài ít nhất 8 ký tự
         // success => thành công
         // fail =>  báo message
+        let regexUserName = /^\w{6,}/;
+        let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        let regexPassword = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+        regexUserName.test(userName)
+            ? setErrorUserName(true)
+            : alert("User Name phải lớn hơn 6 ký tự");
+        regexEmail.test(email)
+            ? setErrorEmail(true)
+            : alert("Email không đúng định dạng");
+        regexPassword.test(password)
+            ? setErrorPassword(true)
+            : alert(
+                  "password phải lớn hơn 8 ký tự, có chữ cái viết hoa, viết thường, có số, chứa ít nhất một ký tự đặc biệt"
+              );
 
-        if (userName || email || password) {
-            console.log('có tồn tại name, email, password');
-        } else {
+        if (errorUserName && errorEmail && errorPassword) {
+            setFormValid(true);
         }
-        // if (userName) {
-        //     if (userName.length > 6) {
-        //         console.log('co userName');
-        //         validateUserName = true;
-        //     }
-        //     alert('userName có độ dài hơn 6 ký tự');
-        // } else {
-        //     alert('userName không được để rỗng');
-        // }
-
-        // if (email) {
-        //     console.log('cos email');
-        // }
     };
 
     const _onHandlerChange = (event) => {
         const target = event.target;
         const currentName = target.name;
         switch (currentName) {
-            case 'username':
+            case "username":
                 setUserName(event.target.value);
                 break;
-            case 'email':
+            case "email":
                 setEmail(event.target.value);
                 break;
-            case 'password':
+            case "password":
                 setPassword(event.target.value);
                 break;
             default:
@@ -51,9 +55,22 @@ function HomeGuest(props) {
         }
     };
 
-    const _onHandlerSubmit = (event) => {
+    const _onHandlerSubmit = async (event) => {
         event.preventDefault();
         _handlerValidate();
+        if (formValid) {
+            try {
+                await Axios.post("http://localhost:8000/register", {
+                    username: userName,
+                    email: email,
+                    password: password,
+                });
+                console.log({ userName, email, password });
+                alert("add user into database success");
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
     };
 
     return (
@@ -87,6 +104,7 @@ function HomeGuest(props) {
                                 autoComplete="off"
                                 onChange={_onHandlerChange}
                                 value={userName}
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -105,6 +123,7 @@ function HomeGuest(props) {
                                 autoComplete="off"
                                 onChange={_onHandlerChange}
                                 value={email}
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -122,6 +141,7 @@ function HomeGuest(props) {
                                 placeholder="Create a password"
                                 onChange={_onHandlerChange}
                                 value={password}
+                                required
                             />
                         </div>
                         <button

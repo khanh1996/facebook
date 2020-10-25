@@ -1,10 +1,11 @@
-import React from 'react';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import HomeGuest from './components/HomeGuest';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import About from './components/about/About';
-import Terms from './components/terms/Terms';
+import React from "react";
+import regeneratorRuntime from "regenerator-runtime";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import HomeGuest from "./components/HomeGuest";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import About from "./components/about/About";
+import Terms from "./components/terms/Terms";
 
 function App(props) {
     return (
