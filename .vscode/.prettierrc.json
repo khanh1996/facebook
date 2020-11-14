@@ -1,0 +1,24 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+
+    "open-in-browser.default": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "prettier.bracketSpacing": false,
+    "editor.codeActionsOnSave": null,
+    "editor.semanticTokenColorCustomizations": null,
+    "window.zoomLevel": 0,
+    "sync.gist": "c5c15c37bc163bb94a2b3ed748041f92",
+    "workbench.colorTheme": "Dracula",
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "editor.formatOnSave": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "search.showLineNumbers": true,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
+}

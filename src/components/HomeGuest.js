@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Page from "./Page";
-import Axios from "axios";
+import React, {useEffect, useState} from 'react';
+import Page from './Page';
+import Axios from 'axios';
 
 function HomeGuest(props) {
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [errorUserName, setErrorUserName] = useState(false);
     const [errorEmail, setErrorEmail] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
@@ -22,14 +22,14 @@ function HomeGuest(props) {
         let regexPassword = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
         regexUserName.test(userName)
             ? setErrorUserName(true)
-            : alert("User Name phải lớn hơn 6 ký tự");
+            : alert('User Name phải lớn hơn 6 ký tự');
         regexEmail.test(email)
             ? setErrorEmail(true)
-            : alert("Email không đúng định dạng");
+            : alert('Email không đúng định dạng');
         regexPassword.test(password)
             ? setErrorPassword(true)
             : alert(
-                  "password phải lớn hơn 8 ký tự, có chữ cái viết hoa, viết thường, có số, chứa ít nhất một ký tự đặc biệt"
+                  'password phải lớn hơn 8 ký tự, có chữ cái viết hoa, viết thường, có số, chứa ít nhất một ký tự đặc biệt'
               );
 
         if (errorUserName && errorEmail && errorPassword) {
@@ -41,13 +41,13 @@ function HomeGuest(props) {
         const target = event.target;
         const currentName = target.name;
         switch (currentName) {
-            case "username":
+            case 'username':
                 setUserName(event.target.value);
                 break;
-            case "email":
+            case 'email':
                 setEmail(event.target.value);
                 break;
-            case "password":
+            case 'password':
                 setPassword(event.target.value);
                 break;
             default:
@@ -58,19 +58,24 @@ function HomeGuest(props) {
     const _onHandlerSubmit = async (event) => {
         event.preventDefault();
         _handlerValidate();
+        console.log('submit');
+        console.log({username: userName, email: email, password: password});
         if (formValid) {
+            console.log('async');
             try {
-                await Axios.post("http://localhost:8000/register", {
+                await Axios.post('http://localhost:8085/register', {
                     username: userName,
                     email: email,
                     password: password,
                 });
-                console.log({ userName, email, password });
-                alert("add user into database success");
+                console.log({userName, email, password});
+                console.log('add user into database success');
             } catch (error) {
+                console.log('Can not add user into database');
                 console.log(error.message);
             }
         }
+        console.log('done');
     };
 
     return (
